@@ -2,240 +2,324 @@
 title: API Reference
 
 language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
-
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a>
-
-includes:
-  - errors
+  - python/curl
 
 search: true
 
 code_clipboard: true
 ---
 
-# Introduction
+# Auto detect - Translation API
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+## Sync request from python
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+> python code :
 
-This example API documentation page was created with [Slate](https://github.com/slatedocs/slate). Feel free to edit it and use it as a base for your own API's documentation.
+```python/curl
 
-# Authentication
+import requests
 
-> To authorize, use this code:
+URL = "https://gputwo.pinacalabs.com/translation/autodetect_en/v0.1/sync"
 
-```ruby
-require 'kittn'
+user = "USERNAME"
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-```
+passwd = "PASSWORD"
 
-```python
-import kittn
+DATA =  {"data": ["Для Путина поездка в Женеву - первый зарубежный визит за последние полтора года. Он летал в Иерусалим в январе 2020 года, после чего из-за пандемии перешел на встречи по видеосвязи."]}
 
-api = kittn.authorize('meowmeowmeow')
-```
+result = requests.post(URL, json = DATA, auth = (user, passwd)).json()
 
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here" \
-  -H "Authorization: meowmeowmeow"
-```
+if result["success"]: 
+  print(result["prediction"])
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
+
+{
+  "prediction": ["For Putin, the visit to Geneva is the first foreign visit in a year and a half. He was flying to Jerusalem in January 2020, after which, due to a pandemic, he moved to video meetings."], 
+"success": true
+}
+
+
 ```
 
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
+This endpoint retrieves translated result.
 
 ### Query Parameters
 
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
+Parameter | Description
+--------- | -----------
+url | The api request url for translating text.
+data | The text to be translated.
+user | Username for authentication.
+passwd | Password for authentication.
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
+## Sync request from curl
 
-## Get a Specific Kitten
+> curl request :
 
-```ruby
-require 'kittn'
+```python/curl
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
+curl -d '{"data": ["Для Путина поездка в Женеву - первый зарубежный визит за последние полтора года. Он летал в Иерусалим в январе 2020 года, после чего из-за пандемии перешел на встречи по видеосвязи."]}' -H "Content-Type: application/json" -X POST https://gputwo.pinacalabs.com/translation/autodetect_en/v0.1/sync -u USERNAME:PASSWORD
 
-```python
-import kittn
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```shell
-curl "http://example.com/api/kittens/2" \
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
+
 {
-  "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "prediction": ["For Putin, the visit to Geneva is the first foreign visit in a year and a half. He was flying to Jerusalem in January 2020, after which, due to a pandemic, he moved to video meetings."], 
+"success": true
 }
+
 ```
 
-This endpoint retrieves a specific kitten.
+This endpoint retrieves translated result.
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-
-### HTTP Request
-
-`GET http://example.com/kittens/<ID>`
-
-### URL Parameters
+### Query Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to retrieve
+url | The api request url for translating text.
+data | The text to be translated.
+user | Username for authentication.
+passwd | Password for authentication.
 
-## Delete a Specific Kitten
+## Async request from python
 
-```ruby
-require 'kittn'
+>python code :
 
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
+```python/curl
 
-```python
-import kittn
+import requests
 
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
+URL = "https://gputwo.pinacalabs.com/translation/autodetect_en/v0.1/async"
 
-```shell
-curl "http://example.com/api/kittens/2" \
-  -X DELETE \
-  -H "Authorization: meowmeowmeow"
-```
+user = "USERNAME"
 
-```javascript
-const kittn = require('kittn');
+passwd = "PASSWORD"
 
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
+DATA =  {"data": ["Для Путина поездка в Женеву - первый зарубежный визит за последние полтора года. Он летал в Иерусалим в январе 2020 года, после чего из-за пандемии перешел на встречи по видеосвязи."], "webhook": None}
+
+result = requests.post(URL, json = DATA, auth = (user, passwd)).json()
+
+if result["success"]: 
+  print(result["unique_id"])
+
+
 ```
 
 > The above command returns JSON structured like this:
 
 ```json
+
 {
-  "id": 2,
-  "deleted" : ":("
+  "success": true, 
+  "unique_id": "9_2021-06-18-13-15-55-240_d68c54ff-73a8-42f6-8b95-509c38a332e1"
 }
+
 ```
 
 This endpoint deletes a specific kitten.
 
-### HTTP Request
+### Notes
 
-`DELETE http://example.com/kittens/<ID>`
+`1. If “webhook” is provided, the result will be posted to the webhook once the request is processed`
 
 ### URL Parameters
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete
+url | The api request url for translating text.
+data | The text to be translated.
+user | Username for authentication.
+passwd | Password for authentication.
+
+## Async request from curl
+
+> curl request :
+
+```python/curl
+
+curl -d '{"data": ["Для Путина поездка в Женеву - первый зарубежный визит за последние полтора года. Он летал в Иерусалим в январе 2020 года, после чего из-за пандемии перешел на встречи по видеосвязи."], "webhook": None}' -H "Content-Type: application/json" -X POST https://gputwo.pinacalabs.com/translation/autodetect_en/v0.1/async -u USERNAME:PASSWORD
+
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+{
+  "success": true, 
+  "unique_id": "9_2021-06-18-13-15-55-240_d68c54ff-73a8-42f6-8b95-509c38a332e1"
+}
+
+```
+
+This endpoint deletes a specific kitten.
+
+### Notes
+
+`1. If “webhook” is provided, the result will be posted to the webhook once the request is processed`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+url | The api request url for translating text.
+data | The text to be translated.
+user | Username for authentication.
+passwd | Password for authentication.
+
+## Fetching/ Checking result for async request
+
+> curl request :
+
+```python/curl
+
+curl -d '{"unique_id": "9_2021-06-03-14-29-40-480_cb77178c-4d84-4759-a34c-b9d56f587714"}' -H "Content-Type: application/json" -X POST https://gputwo.pinacalabs.com/translation/autodetect_en/v0.1/result -u USERNAME:PASSWORD
+
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+{
+  "prediction": ["For Putin, the visit to Geneva is the first foreign visit in a year and a half. He was flying to Jerusalem in January 2020, after which, due to a pandemic, he moved to video meetings."], 
+  "success": true
+}
+
+```
+
+This endpoint deletes a specific kitten.
+
+### Async request Response
+
+`1. If the request is processed, the response for async request is the same as the response for sync request`
+
+`2. Please DO NOT pol for results continuously. Use a reasonable sleep time (at least 1 second) between each /result request`
+
+`3. If the request is not processed yet, the response indicates the same using “success”: False and “reason”`
+
+### Notes
+
+`1. data” field of input JSON should be a list of texts that are sent for prediction. (Here prediction implies translation)`
+
+`2. “success” in the response indicated the status of the result. (if true, “prediction” will contain your results).`
+
+`3. “prediction” in the response (if success is true) contains a list of predictions whose length is the same as “data” in the input json.`
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+url | The api request url for translating text.
+data | The text to be translated.
+USERNAME | Username for authentication.
+PASSWORD | Password for authentication.
+
+## Entity Relationship API
+
+> curl request :
+
+```python/curl
+
+curl -d '{"data": ["Praneeth Bedapudi works at Pinaca Labs."]}' -H "Content-Type: application/json" -X POST https://gpuone.pinacalabs.com/entity_relation/sync -u USERNAME:PASSWORD
+
+
+```
+
+> The above command returns JSON structured like this:
+
+```json
+
+{
+  "prediction": [[{"line": "Praneeth Bedapudi works at Pinaca Labs.", "entities": [{"span": [0, 17], "class": "PER", "phrase": "Praneeth Bedapudi"}, {"span": [27, 38], "class": "ORG", "phrase": "Pinaca Labs"}], "relations": [{"phrase_1": "Praneeth Bedapudi", "phrase_2": "Pinaca Labs", "span_1": [0, 17], "span_2": [27, 38], "relation": "per:employee_of"}]}]], 
+  "success": true
+}
+
+```
+
+This endpoint retrieves a entities avialable between sentence.
+
+### Entity Relationship API
+
+`1. The entity relationship API follows the same basic structure as that of the translation API. i.e: /sync, /result and /async follow the exact same specifications`
+
+### Notes
+
+`1. The response for each input in the list “data” contains a list of dictionaries with keys “line”: text, “entities”: list (list of dictionaries with “class” and “phrase” as keys) and “relations”.`
+
+`2. The key “class” can be one of` 
+
+MISC 
+
+PER 
+
+ORG 
+
+LOC 
+
+
+`3. The key “relation” can be one of`
+
+org:alternate_names
+org:city_of_headquarters
+org:country_of_headquarters
+org:dissolved
+org:founded
+org:founded_by
+org:member_of
+org:members
+org:number_of_employees/members
+org:parents
+org:political/religious_affiliation
+org:shareholders
+org:stateorprovince_of_headquarters
+org:subsidiaries
+org:top_members/employees
+org:website
+per:age
+per:alternate_names
+per:cause_of_death
+per:charges
+per:children
+per:cities_of_residence
+per:city_of_birth
+per:city_of_death
+per:countries_of_residence
+per:country_of_birth
+per:country_of_death
+per:date_of_birth
+per:date_of_death
+per:employee_of
+per:origin
+per:other_family
+per:parents
+per:religion
+per:schools_attended
+per:siblings
+per:spouse
+per:stateorprovince_of_birth
+per:stateorprovince_of_death
+per:stateorprovinces_of_residence
+per:title
+
+
+### URL Parameters
+
+Parameter | Description
+--------- | -----------
+url | The api request url for translating text.
+data | The text to be translated.
+USERNAME | Username for authentication.
+PASSWORD | Password for authentication.
 
