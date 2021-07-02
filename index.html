@@ -291,7 +291,7 @@
     </script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;python&#x2F;curl&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -299,12 +299,9 @@
       </span>
     </a>
     <div class="toc-wrapper">
-      <img src="images/logo-1e815a84.png" class="logo" alt="" />
+      <img src="images/Pinaca-65df005b.png" class="logo" alt="" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
-              <a href="#" data-language-name="ruby">ruby</a>
-              <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="python/curl">python/curl</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -312,165 +309,169 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
-          </li>
-          <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#auto-detect-translation-api" class="toc-h1 toc-link" data-title="Auto detect - Translation API">Auto detect - Translation API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#sync-request-from-python" class="toc-h2 toc-link" data-title="Sync request from python">Sync request from python</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
+                    <a href="#sync-request-from-curl" class="toc-h2 toc-link" data-title="Sync request from curl">Sync request from curl</a>
                   </li>
                   <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#async-request-from-python" class="toc-h2 toc-link" data-title="Async request from python">Async request from python</a>
+                  </li>
+                  <li>
+                    <a href="#async-request-from-curl" class="toc-h2 toc-link" data-title="Async request from curl">Async request from curl</a>
+                  </li>
+                  <li>
+                    <a href="#fetching-checking-result-for-async-request" class="toc-h2 toc-link" data-title="Fetching/ Checking result for async request">Fetching/ Checking result for async request</a>
+                  </li>
+                  <li>
+                    <a href="#entity-relationship-api" class="toc-h2 toc-link" data-title="Entity Relationship API">Entity Relationship API</a>
                   </li>
               </ul>
           </li>
-          <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
-          </li>
       </ul>
-        <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/slatedocs/slate'>Documentation Powered by Slate</a></li>
-        </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
-
-<p>We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
-
-<p>This example API documentation page was created with <a href="https://github.com/slatedocs/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
+        <h1 id='auto-detect-translation-api'>Auto detect - Translation API</h1><h2 id='sync-request-from-python'>Sync request from python</h2>
 <blockquote>
-<p>To authorize, use this code:</p>
+<p>python code :</p>
 </blockquote>
-<div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<div class="highlight"><pre class="highlight plaintext"><code>
+import requests
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+URL = "https://gputwo.pinacalabs.com/translation/autodetect_en/v0.1/sync"
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
+user = "USERNAME"
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-</code></pre></div>
-<blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
-</blockquote>
+passwd = "PASSWORD"
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+DATA =  {"data": ["Для Путина поездка в Женеву - первый зарубежный визит за последние полтора года. Он летал в Иерусалим в январе 2020 года, после чего из-за пандемии перешел на встречи по видеосвязи."]}
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+result = requests.post(URL, json = DATA, auth = (user, passwd)).json()
 
-<p><code>Authorization: meowmeowmeow</code></p>
+if result["success"]: 
+  print(result["prediction"])
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">();</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"prediction"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"For Putin, the visit to Geneva is the first foreign visit in a year and a half. He was flying to Jerusalem in January 2020, after which, due to a pandemic, he moved to video meetings."</span><span class="p">],</span><span class="w"> 
+</span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
 </span></code></pre></div>
-<p>This endpoint retrieves all kittens.</p>
-<h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
+<p>This endpoint retrieves translated result.</p>
 <h3 id='query-parameters'>Query Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Default</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
+<td>url</td>
+<td>The api request url for translating text.</td>
 </tr>
 <tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>data</td>
+<td>The text to be translated.</td>
+</tr>
+<tr>
+<td>user</td>
+<td>Username for authentication.</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>Password for authentication.</td>
 </tr>
 </tbody></table>
+<h2 id='sync-request-from-curl'>Sync request from curl</h2>
+<blockquote>
+<p>curl request :</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>
+curl -d '{"data": ["Для Путина поездка в Женеву - первый зарубежный визит за последние полтора года. Он летал в Иерусалим в январе 2020 года, после чего из-за пандемии перешел на встречи по видеосвязи."]}' -H "Content-Type: application/json" -X POST https://gputwo.pinacalabs.com/translation/autodetect_en/v0.1/sync -u USERNAME:PASSWORD
 
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="kd">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"prediction"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"For Putin, the visit to Geneva is the first foreign visit in a year and a half. He was flying to Jerusalem in January 2020, after which, due to a pandemic, he moved to video meetings."</span><span class="p">],</span><span class="w"> 
+</span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre></div>
-<p>This endpoint retrieves a specific kitten.</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
+</span></code></pre></div>
+<p>This endpoint retrieves translated result.</p>
+<h3 id='query-parameters-2'>Query Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>The api request url for translating text.</td>
+</tr>
+<tr>
+<td>data</td>
+<td>The text to be translated.</td>
+</tr>
+<tr>
+<td>user</td>
+<td>Username for authentication.</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>Password for authentication.</td>
+</tr>
+</tbody></table>
+<h2 id='async-request-from-python'>Async request from python</h2>
+<blockquote>
+<p>python code :</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>
+import requests
+
+URL = "https://gputwo.pinacalabs.com/translation/autodetect_en/v0.1/async"
+
+user = "USERNAME"
+
+passwd = "PASSWORD"
+
+DATA =  {"data": ["Для Путина поездка в Женеву - первый зарубежный визит за последние полтора года. Он летал в Иерусалим в январе 2020 года, после чего из-за пандемии перешел на встречи по видеосвязи."], "webhook": None}
+
+result = requests.post(URL, json = DATA, auth = (user, passwd)).json()
+
+if result["success"]: 
+  print(result["unique_id"])
+
+
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
+  </span><span class="nl">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9_2021-06-18-13-15-55-240_d68c54ff-73a8-42f6-8b95-509c38a332e1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>This endpoint deletes a specific kitten.</p>
+<h3 id='notes'>Notes</h3>
+<p><code>1. If “webhook” is provided, the result will be posted to the webhook once the request is processed</code></p>
 <h3 id='url-parameters'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -479,37 +480,44 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
+<td>url</td>
+<td>The api request url for translating text.</td>
+</tr>
+<tr>
+<td>data</td>
+<td>The text to be translated.</td>
+</tr>
+<tr>
+<td>user</td>
+<td>Username for authentication.</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>Password for authentication.</td>
 </tr>
 </tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><div class="highlight"><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<h2 id='async-request-from-curl'>Async request from curl</h2>
+<blockquote>
+<p>curl request :</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>
+curl -d '{"data": ["Для Путина поездка в Женеву - первый зарубежный визит за последние полтора года. Он летал в Иерусалим в январе 2020 года, после чего из-за пандемии перешел на встречи по видеосвязи."], "webhook": None}' -H "Content-Type: application/json" -X POST https://gputwo.pinacalabs.com/translation/autodetect_en/v0.1/async -u USERNAME:PASSWORD
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="p">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="n">kittens</span><span class="p">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre></div><div class="highlight"><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span> <span class="se">\</span>
-  <span class="nt">-X</span> DELETE <span class="se">\</span>
-  <span class="nt">-H</span> <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre></div><div class="highlight"><pre class="highlight javascript tab-javascript"><code><span class="kd">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="dl">'</span><span class="s1">kittn</span><span class="dl">'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="dl">'</span><span class="s1">meowmeowmeow</span><span class="dl">'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 </code></pre></div>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
 </blockquote>
-<div class="highlight"><pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="nl">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nl">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> 
+  </span><span class="nl">"unique_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9_2021-06-18-13-15-55-240_d68c54ff-73a8-42f6-8b95-509c38a332e1"</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre></div>
 <p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
+<h3 id='notes-2'>Notes</h3>
+<p><code>1. If “webhook” is provided, the result will be posted to the webhook once the request is processed</code></p>
 <h3 id='url-parameters-2'>URL Parameters</h3>
 <table><thead>
 <tr>
@@ -518,76 +526,185 @@ Remember — a happy kitten is an authenticated kitten!
 </tr>
 </thead><tbody>
 <tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
+<td>url</td>
+<td>The api request url for translating text.</td>
+</tr>
+<tr>
+<td>data</td>
+<td>The text to be translated.</td>
+</tr>
+<tr>
+<td>user</td>
+<td>Username for authentication.</td>
+</tr>
+<tr>
+<td>passwd</td>
+<td>Password for authentication.</td>
 </tr>
 </tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">
-This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
-</aside>
+<h2 id='fetching-checking-result-for-async-request'>Fetching/ Checking result for async request</h2>
+<blockquote>
+<p>curl request :</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>
+curl -d '{"unique_id": "9_2021-06-03-14-29-40-480_cb77178c-4d84-4759-a34c-b9d56f587714"}' -H "Content-Type: application/json" -X POST https://gputwo.pinacalabs.com/translation/autodetect_en/v0.1/result -u USERNAME:PASSWORD
 
-<p>The Kittn API uses the following error codes:</p>
 
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"prediction"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"For Putin, the visit to Geneva is the first foreign visit in a year and a half. He was flying to Jerusalem in January 2020, after which, due to a pandemic, he moved to video meetings."</span><span class="p">],</span><span class="w"> 
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>This endpoint deletes a specific kitten.</p>
+<h3 id='async-request-response'>Async request Response</h3>
+<p><code>1. If the request is processed, the response for async request is the same as the response for sync request</code></p>
+
+<p><code>2. Please DO NOT pol for results continuously. Use a reasonable sleep time (at least 1 second) between each /result request</code></p>
+
+<p><code>3. If the request is not processed yet, the response indicates the same using “success”: False and “reason”</code></p>
+<h3 id='notes-3'>Notes</h3>
+<p><code>1. data” field of input JSON should be a list of texts that are sent for prediction. (Here prediction implies translation)</code></p>
+
+<p><code>2. “success” in the response indicated the status of the result. (if true, “prediction” will contain your results).</code></p>
+
+<p><code>3. “prediction” in the response (if success is true) contains a list of predictions whose length is the same as “data” in the input json.</code></p>
+<h3 id='url-parameters-3'>URL Parameters</h3>
 <table><thead>
 <tr>
-<th>Error Code</th>
-<th>Meaning</th>
+<th>Parameter</th>
+<th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>400</td>
-<td>Bad Request -- Your request is invalid.</td>
+<td>url</td>
+<td>The api request url for translating text.</td>
 </tr>
 <tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
+<td>data</td>
+<td>The text to be translated.</td>
 </tr>
 <tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
+<td>USERNAME</td>
+<td>Username for authentication.</td>
 </tr>
 <tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
+<td>PASSWORD</td>
+<td>Password for authentication.</td>
+</tr>
+</tbody></table>
+<h2 id='entity-relationship-api'>Entity Relationship API</h2>
+<blockquote>
+<p>curl request :</p>
+</blockquote>
+<div class="highlight"><pre class="highlight plaintext"><code>
+curl -d '{"data": ["Praneeth Bedapudi works at Pinaca Labs."]}' -H "Content-Type: application/json" -X POST https://gpuone.pinacalabs.com/entity_relation/sync -u USERNAME:PASSWORD
+
+
+</code></pre></div>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<div class="highlight"><pre class="highlight json tab-json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nl">"prediction"</span><span class="p">:</span><span class="w"> </span><span class="p">[[{</span><span class="nl">"line"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Praneeth Bedapudi works at Pinaca Labs."</span><span class="p">,</span><span class="w"> </span><span class="nl">"entities"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nl">"span"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p">],</span><span class="w"> </span><span class="nl">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PER"</span><span class="p">,</span><span class="w"> </span><span class="nl">"phrase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Praneeth Bedapudi"</span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="nl">"span"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="mi">38</span><span class="p">],</span><span class="w"> </span><span class="nl">"class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORG"</span><span class="p">,</span><span class="w"> </span><span class="nl">"phrase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinaca Labs"</span><span class="p">}],</span><span class="w"> </span><span class="nl">"relations"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nl">"phrase_1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Praneeth Bedapudi"</span><span class="p">,</span><span class="w"> </span><span class="nl">"phrase_2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pinaca Labs"</span><span class="p">,</span><span class="w"> </span><span class="nl">"span_1"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">17</span><span class="p">],</span><span class="w"> </span><span class="nl">"span_2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="mi">27</span><span class="p">,</span><span class="w"> </span><span class="mi">38</span><span class="p">],</span><span class="w"> </span><span class="nl">"relation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"per:employee_of"</span><span class="p">}]}]],</span><span class="w"> 
+  </span><span class="nl">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre></div>
+<p>This endpoint retrieves a entities avialable between sentence.</p>
+<h3 id='entity-relationship-api-2'>Entity Relationship API</h3>
+<p><code>1. The entity relationship API follows the same basic structure as that of the translation API. i.e: /sync, /result and /async follow the exact same specifications</code></p>
+<h3 id='notes-4'>Notes</h3>
+<p><code>1. The response for each input in the list “data” contains a list of dictionaries with keys “line”: text, “entities”: list (list of dictionaries with “class” and “phrase” as keys) and “relations”.</code></p>
+
+<p><code>2. The key “class” can be one of</code> </p>
+
+<p>MISC </p>
+
+<p>PER </p>
+
+<p>ORG </p>
+
+<p>LOC </p>
+
+<p><code>3. The key “relation” can be one of</code></p>
+
+<p>org:alternate_names
+org:city_of_headquarters
+org:country_of_headquarters
+org:dissolved
+org:founded
+org:founded_by
+org:member_of
+org:members
+org:number_of_employees/members
+org:parents
+org:political/religious_affiliation
+org:shareholders
+org:stateorprovince_of_headquarters
+org:subsidiaries
+org:top_members/employees
+org:website
+per:age
+per:alternate_names
+per:cause_of_death
+per:charges
+per:children
+per:cities_of_residence
+per:city_of_birth
+per:city_of_death
+per:countries_of_residence
+per:country_of_birth
+per:country_of_death
+per:date_of_birth
+per:date_of_death
+per:employee_of
+per:origin
+per:other_family
+per:parents
+per:religion
+per:schools_attended
+per:siblings
+per:spouse
+per:stateorprovince_of_birth
+per:stateorprovince_of_death
+per:stateorprovinces_of_residence
+per:title</p>
+<h3 id='url-parameters-4'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>url</td>
+<td>The api request url for translating text.</td>
 </tr>
 <tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
+<td>data</td>
+<td>The text to be translated.</td>
 </tr>
 <tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
+<td>USERNAME</td>
+<td>Username for authentication.</td>
 </tr>
 <tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
+<td>PASSWORD</td>
+<td>Password for authentication.</td>
 </tr>
 </tbody></table>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
-                <a href="#" data-language-name="ruby">ruby</a>
-                <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="python/curl">python/curl</a>
           </div>
       </div>
     </div>
